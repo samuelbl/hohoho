@@ -22,22 +22,22 @@ public class ProdutoDAO extends DAO<Produto> {
 	@Override
 	void geraDados() {
 		geraIdEAdiciona(new Produto("Enfeites de árvore",
-				"https://images-americanas.b2w.io/produtos/01/00/item/124242/9/124242976_1GG.jpg",
+				"enfeites",
 				new BigDecimal(4.50)));
-		geraIdEAdiciona(new Produto("Toalha de mesa quadrada 4 lugares",
-				"https://images-americanas.b2w.io/produtos/01/00/item/16256/6/16256622_1GG.jpg",
+		geraIdEAdiciona(new Produto("Toalha de mesa",
+				"toalha",
 				new BigDecimal(42.20)));
-		geraIdEAdiciona(new Produto("Árvore de natal 1,8m + guirlanda",
-				"https://images-americanas.b2w.io/produtos/01/00/item/124507/7/124507760_1GG.jpg",
+		geraIdEAdiciona(new Produto("Árvore de natal",
+				"arvore",
 				new BigDecimal(98)));
-		geraIdEAdiciona(new Produto("Caneca árvore de natal cromus",
-				"https://images-americanas.b2w.io/produtos/01/00/sku/9785/1/9785105_1GG.jpg",
+		geraIdEAdiciona(new Produto("Caneca de natal cromus",
+				"caneca",
 				new BigDecimal(12)));
-		geraIdEAdiciona(new Produto("Guirlanda natalina tradicional",
-				"https://images-americanas.b2w.io/produtos/01/00/item/124242/9/124242976_1GG.jpg",
+		geraIdEAdiciona(new Produto("Guirlanda natalina",
+				"guirlanda",
 				new BigDecimal(56.50)));
-		geraIdEAdiciona(new Produto("Pisca - pisca 100 leds",
-				"https://images-americanas.b2w.io/produtos/01/00/item/8181/9/8181963_1GG.jpg",
+		geraIdEAdiciona(new Produto("Pisca-pisca 100 leds",
+				"pisca",
 				new BigDecimal(14.35)));
 	}
 }
