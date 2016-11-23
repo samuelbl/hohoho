@@ -4,7 +4,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.hohoho.modelo.ItemComercial;
+import br.com.hohoho.dao.CarrinhoDAO;
 import br.com.hohoho.dao.ProdutoDAO;
 import br.com.hohoho.modelo.CarrinhoCompra;
 import br.com.hohoho.modelo.Produto;
@@ -18,14 +18,17 @@ public class CarrinhoBean {
 	
 	
 		
-	public Produto ObterProdutosCarrinho(){
+	public Produto ObterProdutoCarrinho(){
 		Produto produto = ProdutoDAO.getInstance().buscaPorId(Long.valueOf(this.getCarrinho().getId()));
 		return produto;
 		
 	}
 	
 	public String removerDoCarrinho(){
-		return null;
+		FacesContext context = FacesContext.getCurrentInstance();
+		String idItem = (String)context.getExternalContext().getRequestParameterMap().get("idItem");
+		CarrinhoDAO.getInstance().removeDoCarrinho(Long.valueOf(idItem), this.carrinho);
+		return "carrinho?faces-redirect=true";
 		
 	}
 

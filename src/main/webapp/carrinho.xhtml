@@ -9,31 +9,42 @@
 
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
-		<p:outputPanel>Escolha seus produtos</p:outputPanel>
+		<p:outputPanel>Carrinho de Compras</p:outputPanel>
 	</ui:define>
 	<ui:define name="conteudo">
 		<h:form id="form">
-		
-		<p:dataTable var="lista" value="#{CarrinhoCompra.itens}">
-				<p:column headerText="Id">
-					<h:outputText value="#{car.id}" />
+
+			<p:dataTable var="item" value="#{carrinhoBean.carrinho.itens}">
+				<p:column headerText="Produto">
+					<h:graphicImage name="img/#{carrinhoBean.ObterProdutoCarrinho().imagem}_small.png"
+										id="nature1" style="height: 77px; width: 100px" />					
 				</p:column>
 
-				<p:column headerText="Year">
-        <h:outputText value="#{car.year}" />
-    </p:column>
- 
-    <p:column headerText="Brand">
-        <h:outputText value="#{car.brand}" />
-    </p:column>
- 
-    <p:column headerText="Color">
-        <h:outputText value="#{car.color}" />
-    </p:column>
-</p:dataTable>
-		
-		
-		
+				<p:column headerText="Descrição">
+					<h:outputText value="#{carrinhoBean.ObterProdutoCarrinho().nome}" />
+				</p:column>
+
+				<p:column headerText="Quantidade">
+					<h:outputText value="#{item.quantidade}" />
+				</p:column>
+
+				<p:column headerText="Total">
+					<h:outputText value="#{item.total}" />
+				</p:column>
+				
+				<p:column headerText="Remover">
+					<p:commandButton update="@form" excute="@form"
+							icon="fa fa-fw fa-shopping-cart"
+							action="#{carrinhoBean.removerDoCarrinho()}" value="Remover"
+							title="Remover">
+							<f:param name="idItem" value="#{item.id}" />							
+						</p:commandButton>
+				</p:column>
+				
+			</p:dataTable>
+
+
+
 		</h:form>
 	</ui:define>
 	<ui:define name="rodape">

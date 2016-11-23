@@ -15,10 +15,10 @@
 		<h:form id="form">
 			<p:layoutUnit position="center">
 				<p:carousel value="#{lojaBean.produtos}" headerText="Produtos"
-					var="produto" itemStyle="width:1%;" responsive="true">
+					var="produto" itemStyle="width:1%;" responsive="true" styleClass="ui-panelgrid-blank">
 					<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
 						columnClasses="label,value" layout="grid"
-						styleClass="ui-panelgrid-blank">
+						styleClass="ui-panelgrid-blank" >
 						<f:facet name="header">
 							<p:lightBox styleClass="imagebox" id="lighbox1">
 								<h:outputLink value="resources/img/#{produto.imagem}.png"
@@ -49,7 +49,7 @@
 							icon="fa fa-fw fa-shopping-cart"
 							action="#{lojaBean.adicionarAoCarrinho()}" value="Adicionar"
 							title="Adicionar">
-							<f:param name="idProduto" value="#{produto.id}" />							
+							<f:param name="idProduto" value="#{produto.id}" />
 						</p:commandButton>
 
 
