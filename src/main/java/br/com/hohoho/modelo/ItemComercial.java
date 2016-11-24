@@ -2,6 +2,8 @@ package br.com.hohoho.modelo;
 
 import java.math.BigDecimal;
 
+import br.com.hohoho.dao.ProdutoDAO;
+
 
 
 public class ItemComercial extends BaseEntity {
@@ -54,8 +56,8 @@ public class ItemComercial extends BaseEntity {
 		return this.id;
 	}
 	
-	public Long getLongIdProduto() {
-		return Long.valueOf(this.idProduto);
+	public Produto getProduto(){
+		return ProdutoDAO.getInstance().buscaPorId(Long.valueOf(this.idProduto));
 	}
 	
 	

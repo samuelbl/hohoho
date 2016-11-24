@@ -12,13 +12,14 @@
 		<p:outputPanel>Escolha seus produtos</p:outputPanel>
 	</ui:define>
 	<ui:define name="conteudo">
-		<h:form id="form">
-			<p:layoutUnit position="center">
-				<p:carousel value="#{lojaBean.produtos}" headerText="Produtos"
-					var="produto" itemStyle="width:1%;" responsive="true" styleClass="ui-panelgrid-blank">
+		<p:layoutUnit position="center">
+			<p:carousel value="#{lojaBean.produtos}" headerText="Produtos"
+				var="produto" itemStyle="width:1%;" responsive="true"
+				styleClass="ui-panelgrid-blank">
+				<h:form id="form#{produto.id}">
 					<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
 						columnClasses="label,value" layout="grid"
-						styleClass="ui-panelgrid-blank" >
+						styleClass="ui-panelgrid-blank">
 						<f:facet name="header">
 							<p:lightBox styleClass="imagebox" id="lighbox1">
 								<h:outputLink value="resources/img/#{produto.imagem}.png"
@@ -51,17 +52,15 @@
 							title="Adicionar">
 							<f:param name="idProduto" value="#{produto.id}" />
 						</p:commandButton>
-
-
 					</p:panelGrid>
-
-
-					<f:facet name="footer">
-                No total são #{fn:length(lojaBean.produtos)} produtos.
+					
+				</h:form>
+				<f:facet name="footer">
+                #{fn:length(lojaBean.produtos)} produtos listados
         </f:facet>
-				</p:carousel>
-			</p:layoutUnit>
-		</h:form>
+			</p:carousel>
+		</p:layoutUnit>
+
 	</ui:define>
 	<ui:define name="rodape">
 	</ui:define>

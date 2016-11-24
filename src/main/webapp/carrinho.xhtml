@@ -15,34 +15,64 @@
 		<h:form id="form">
 
 			<p:dataTable var="item" value="#{carrinhoBean.carrinho.itens}">
-				<p:column headerText="Produto">
-					<h:graphicImage name="img/#{carrinhoBean.ObterProdutoCarrinho().imagem}_small.png"
-										id="nature1" style="height: 77px; width: 100px" />					
+
+				<f:facet name="header">
+				</f:facet>
+
+				<p:columnGroup type="header">
+					<p:row>
+						<p:column headerText="Produto" />
+						<p:column headerText="Descrição" />
+						<p:column headerText="Quantidade" />
+						<p:column headerText="Total" />
+						<p:column headerText="Remover" />
+					</p:row>
+				</p:columnGroup>
+
+
+
+				<p:column>
+					<h:graphicImage name="img/#{item.produto.imagem}_small.png"
+						id="nature1" style="height: 77px; width: 100px" />
 				</p:column>
 
-				<p:column headerText="Descrição">
-					<h:outputText value="#{carrinhoBean.ObterProdutoCarrinho().nome}" />
+				<p:column>
+					<h:outputText value="#{item.produto.nome}" />
 				</p:column>
 
-				<p:column headerText="Quantidade">
+				<p:column>
 					<h:outputText value="#{item.quantidade}" />
 				</p:column>
 
-				<p:column headerText="Total">
-					<h:outputText value="#{item.total}" />
+				<p:column>
+					<h:outputText value="#{item.total}">
+						<f:convertNumber type="currency" pattern="R$ #0.00"
+							currencySymbol="R$" locale="pt_BR" />
+					</h:outputText>
 				</p:column>
-				
-				<p:column headerText="Remover">
-					<p:commandButton update="@form" excute="@form"
-							icon="fa fa-fw fa-shopping-cart"
-							action="#{carrinhoBean.removerDoCarrinho()}" value="Remover"
-							title="Remover">
-							<f:param name="idItem" value="#{item.id}" />							
-						</p:commandButton>
-				</p:column>
-				
-			</p:dataTable>
 
+				<p:column>
+					<p:commandButton update="@form" excute="@form"
+						icon="fa fa-fw fa-shopping-cart"
+						action="#{carrinhoBean.removerDoCarrinho()}" value="Remover"
+						title="Remover">
+						<f:param name="idItem" value="#{item.id}" />
+					</p:commandButton>
+				</p:column>
+
+				<p:columnGroup type="footer">
+					<p:row>
+						<p:column colspan="2" style="text-align:right"
+							footerText="Total:" />
+						<p:column footerText="#{carrinhoBean.quantidade}" />
+						<p:column footerText="#{carrinhoCompra.total}" />
+					</p:row>
+				</p:columnGroup>
+			</p:dataTable>
+			<p:panel>
+				<p:commandLink action="loja?faces-redirect=true"
+					value="Voltar a comprar" />
+			</p:panel>
 
 
 		</h:form>
