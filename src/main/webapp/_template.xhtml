@@ -17,10 +17,9 @@
 				<p:panelGrid columns="2" >
 					<f:facet name="header">
 						<h:outputLabel value="Carrinho de Compras" /> 
-						<p:graphicImage name="img/carrinho.png" title="Carrinho de Compras" />
-						
+						<p:graphicImage name="img/carrinho.png" title="Carrinho de Compras" />						
 					</f:facet>
-
+					
 					<h:outputText value="Usuário logado" />
 					<h:outputText value="#{usuarioLogado.email}" />
 
@@ -55,6 +54,8 @@
 					icon="fa fa-fw- fa-pencil-square-o" />
 				<p:menuitem value="Carrinho" action="carrinho?faces-redirect=true"
 					icon="fa fa-fw fa-bar-chart" />
+				<p:menuitem value="Gráfico de Vendas" action="vendas?faces-redirect=true"
+					icon="fa fa-fw fa-bar-chart" />				
 				<p:separator />
 				<p:menuitem value="Logout" action="#{loginBean.deslogar}"
 					icon="fa fa-fw fa-sign-out" />
