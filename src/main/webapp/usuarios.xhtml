@@ -13,14 +13,17 @@
 			<p:fieldset legend="Cadastro">
 				<h:panelGrid columns="3">
 					<p:outputLabel value="Email:" for="email" />
-					<p:inputText id="email" value="#{loginBean.usuario.email}" required="true">
+					<p:inputText id="email" value="#{usuariosBean.usuario.email}" required="true" validatorMessage="Email inválido">
 						<f:passThroughAttribute name="type" value="email" />
+						<f:validateRegex pattern=".+@.+" />
+						<f:ajax event="blur" render="messageEmail" />
+					
 					</p:inputText>
 					<p:message for="email" id="messageEmail" />
 					<p:outputLabel value="Senha:" for="senha" />
-					<p:password id="senha" value="#{loginBean.usuario.senha}" feedback="true" required="true" />
+					<p:password id="senha" value="#{usuariosBean.usuario.senha}" feedback="true" required="true" />
 					<p:message for="senha" id="messageSenha" />
-					<p:commandButton value="Efetue Login" action="#{loginBean.efetuaLogin}" update="@form"
+					<p:commandButton value="Cadastrar Usuário" action="#{usuariosBean.cadastrarUsuario}" update="@form"
 						process="@form" />
 				</h:panelGrid>
 			</p:fieldset>

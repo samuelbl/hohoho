@@ -3,7 +3,6 @@ package br.com.hohoho.bean;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
