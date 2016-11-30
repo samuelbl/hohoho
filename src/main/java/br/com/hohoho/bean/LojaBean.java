@@ -54,7 +54,17 @@ public class LojaBean implements Serializable {
 		ItemComercial item = new ItemComercial(idProduto, this.getQuantidadeSelecionada());
 		item = ItemComercialDAO.getInstance().adiciona(item);
 		CarrinhoCompra carrinho = (CarrinhoCompra) context.getExternalContext().getSessionMap().get("carrinhoCompra");
-		carrinho.setItens(item);
+		boolean controle = false;
+		for (ItemComercial itemComercial : carrinho.getItens()) {
+			if (itemComercial.getIdProduto().equals(item.getIdProduto())){
+				itemComercial.setQuantidade(itemComercial.getQuantidade()+item.getQuantidade());
+				itemComercial.setTotal(itemComercial.getTotal().add(item.getTotal()));
+				controle = true;
+			}
+		}
+		if(!controle){
+			carrinho.setItens(item);
+		}
 		CarrinhoDAO.getInstance().atualizaCarrinhoEtotal(carrinho);
 		return "carrinho?faces-redirect=true";
 	}
