@@ -14,7 +14,8 @@
 	<ui:define name="conteudo">
 		<h:form id="form">
 
-			<p:dataTable var="item" value="#{carrinhoBean.carrinho.itens}">
+			<p:dataTable var="item" value="#{carrinhoBean.carrinho.itens}"
+				binding="#{carrinhoBean.dataTable}">
 
 				<f:facet name="header">
 				</f:facet>
@@ -49,20 +50,27 @@
 				</p:column>
 
 				<p:column>
-					<p:commandButton id="removeBtn"  value="Remover" type="button"/>						
-					<p:overlayPanel id="removePanel" for="removeBtn" hideEffect="fade">
-						<p:selectOneMenu id="quantidade" 
-							value="${item.quantidade}">
-							<f:selectItems value="#{item.quantidade}" />
-						</p:selectOneMenu>
-						<p:commandButton update="@form" excute="@form"
-						icon="fa fa-fw fa-shopping-cart"
-						action="#{carrinhoBean.removerDoCarrinho()}" value="Remover"
-						title="Remover">
+					<p:commandButton id="removeBtn" value="Remover" type="button">
 						<f:param name="idItem" value="#{item.id}" />
 					</p:commandButton>
+					<p:overlayPanel id="removePanel" for="removeBtn" hideEffect="fade" 
+						 showCloseIcon="true" dismissable="false">
+								<p:outputLabel value="Quantidade: " for="quantidade"/>
+								<p:selectOneMenu id="quantidade"
+									value="${carrinhoBean.quantidadeSelecionada}">									
+									<f:selectItems value="#{carrinhoBean.quantidadeDoItem()}" />
+								</p:selectOneMenu>
+					
+						
+								<p:commandButton update="@form" execute="@form"
+									value="OK" 
+									action="#{carrinhoBean.removerDoCarrinho()}" id="botao">
+									<f:param name="idItem" value="#{item.id}" />
+								</p:commandButton>
+						
 					</p:overlayPanel>
 				</p:column>
+
 
 				<p:columnGroup type="footer">
 					<p:row>
