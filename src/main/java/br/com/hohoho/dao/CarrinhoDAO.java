@@ -32,11 +32,11 @@ public class CarrinhoDAO extends DAO<CarrinhoCompra> {
 		super.atualiza(carrinho);
 	}
 	
-	public void removeDoCarrinho(Long itemId, CarrinhoCompra carrinho){
+	public void removeDoCarrinho(ItemComercial item, CarrinhoCompra carrinho){
 		BigDecimal total = carrinho.getTotal();	
 		for (int i =0; i< carrinho.getItens().size();i++){
 			ItemComercial itemCarrinho = carrinho.getItens().get(i);
-			if(itemCarrinho.getId().equals(itemId)){
+			if(itemCarrinho.getId().equals(item.getId())){
 				total = total.subtract(itemCarrinho.getTotal());
 				carrinho.getItens().remove(itemCarrinho);
 				carrinho.setTotal(total);
@@ -44,38 +44,22 @@ public class CarrinhoDAO extends DAO<CarrinhoCompra> {
 		}
 		super.atualiza(carrinho);
 	}
-		/*
-	    pessoas.add(new Pessoa("José"));
-	    pessoas.add(new Pessoa("Maria"));
-	    pessoas.add(new Pessoa("Pedro"));
-
-	    System.out.print("Pessoas cadastradas:\n");
-	    for(int i = 0; i < pessoas.size(); i++)
-	    {
-	        System.out.print(pessoas.get(i).getNome() + "\n");
-	    }
-
-	    // Removendo Pedro:
-	    for(int i = 0; i < pessoas.size(); i++)
-	    {
-	        Pessoa p = pessoas.get(i);
-
-	        if(p.getNome().equals("Pedro"))
-	        {
-	            // Encontrou uma pessoa cadastrada com nome "Pedro".
-
-	            // Remove.
-	            pessoas.remove(p);
-
-	            // Sai do loop.
-	            break;
-	        }
-	    } */
 	
-	
-
-
-		
+	public void removeQuantidadeDoCarrinho(ItemComercial itemId, CarrinhoCompra carrinho){
+		BigDecimal total = carrinho.getTotal();	
+		for (int i =0; i< carrinho.getItens().size();i++){
+			ItemComercial itemCarrinho = carrinho.getItens().get(i);
+			if(itemCarrinho.getId().equals(itemId.getId())){
+				itemCarrinho.setQuantidade(itemCarrinho.getQuantidade()-itemCarrinho.getQuantidadeSelecionadaRemocao());
+				BigDecimal vlrProdutoUnitario = itemCarrinho.getProduto().getValor();
+				total = total.subtract((vlrProdutoUnitario.multiply(BigDecimal.valueOf(itemCarrinho.getQuantidadeSelecionadaRemocao()))));
+				itemCarrinho.setTotal(vlrProdutoUnitario.multiply(BigDecimal.valueOf(itemCarrinho.getQuantidade())));
+				carrinho.setTotal(total);
+			}
+		}
+		super.atualiza(carrinho);
+	}		
+			
 	@Override
 	void geraDados() {
 		// TODO Auto-generated method stub

@@ -6,16 +6,14 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
-
 <ui:composition template="_template.xhtml">
 	<ui:define name="titulo">
 		<p:outputPanel>Escolha seus produtos</p:outputPanel>
 	</ui:define>
 	<ui:define name="conteudo">
-		<p:layoutUnit position="center">
+
 			<p:carousel value="#{lojaBean.produtos}" headerText="Produtos"
-				var="produto" itemStyle="width:1%;" responsive="true"
-				styleClass="ui-panelgrid-blank">
+				var="produto" itemStyle="text-align:center" responsive="true">
 				<h:form id="form#{produto.id}">
 					<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
 						columnClasses="label,value" layout="grid"
@@ -46,20 +44,18 @@
 						</p:selectOneMenu>
 
 						<h:outputText value="Adicionar ao Carrinho" />
-						<p:commandButton update="@form" excute="@form"
-							icon="fa fa-fw fa-shopping-cart"
+						<p:commandButton update="@form" icon="fa fa-fw fa-shopping-cart"
 							action="#{lojaBean.adicionarAoCarrinho()}" value="Adicionar"
 							title="Adicionar">
 							<f:param name="idProduto" value="#{produto.id}" />
 						</p:commandButton>
 					</p:panelGrid>
-					
+
 				</h:form>
 				<f:facet name="footer">
                 #{fn:length(lojaBean.produtos)} produtos listados
-        </f:facet>
+       			 </f:facet>
 			</p:carousel>
-		</p:layoutUnit>
 
 	</ui:define>
 	<ui:define name="rodape">

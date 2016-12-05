@@ -25,7 +25,6 @@ public class LoginBean implements Serializable{
 	}
 
 	public String efetuaLogin() {
-		System.out.println("fazendo login do usuario " + this.usuario.getEmail());
 		FacesContext context = FacesContext.getCurrentInstance();
 		Long existe = UsuarioDAO.getInstance().existeRetornaId(this.usuario);
 		if (existe!= null) {
